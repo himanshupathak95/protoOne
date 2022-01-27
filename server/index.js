@@ -11,26 +11,19 @@ const db = mysql.createPool({
     database: "ProtoOne",
 });
 
-app.use(cors()); 
+app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/api/get", (req, res)=>{
-
-    const sqlSelect = "SELECT * FROM one";
-    db.query(sqlSelect, (err, result)=>{
-        res.send(result);
-    });
-});
-
-app.post("/api/insert", (req, res)=>{
+app.post("/api/insert", (req, res) => {
 
     const theName = req.body.theName;
     const theMessage = req.body.theMessage;
 
-    const sqlInsert = "INSERT INTO one (name, message) VALUES (?,?)";
-    db.query(sqlInsert, [theName, theMessage], (err, result)=>{
-        console.log(err);
+    const sqlInsert = 
+    "INSERT INTO one (name, message) VALUES (?,?)";
+    db.query(sqlInsert, [theName, theMessage], (err, result) => {
+        console.log(result);
     });
 });
 
